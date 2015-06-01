@@ -1,12 +1,14 @@
 doctype html
-html(lang="en-US")
+html(lang="en-US", ng-app="angularAddresses")
   head
     meta(charset="utf-8")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(name="viewport", content="width=device-width, initial-scale=1")
     title Angular Addresses
-  body
+  body(ng-controller="Main")
     .container
+      h1(ng-repeat="name in names | orderBy | filter:query") Hello {{name | uppercase}}!
+      input(placeholder="Search", ng-model="query")
 
-      script(src="lib/build.js")
-      script(src="js/main.js")
+    script(src="lib/build.js")
+    script(src="js/main.js")
