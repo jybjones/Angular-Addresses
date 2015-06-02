@@ -11,4 +11,17 @@ angular
       {name: 'Amanda', twitter: '@princessamanda', phone: '1 615 234 5678'},
       {name: 'Charity', twitter: '@nonprofit', phone: '615.234.5678'}
     ];
+
+    vm.newPerson = {};
+
+    vm.addNewAddress = function () {
+      vm.people.push(vm.newPerson);
+      vm.newPerson = {};
+    };
+
+    vm.removeAddress = function (person) {
+      var index = vm.people.indexOf(person);
+      vm.people.splice(index, 1);
+    };
+
   });

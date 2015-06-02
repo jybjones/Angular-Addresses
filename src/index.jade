@@ -7,14 +7,25 @@ html(lang="en-US", ng-app="angularAddresses")
     title Angular Addresses
   body(ng-controller="Main as main")
     .container
+      form(name="newAddressForm", ng-submit="newAddressForm.$valid && main.addNewAddress()", novalidate)
+        label Name
+        input(type="text", placeholder="John", ng-model="main.newPerson.name", required)
+        label Phone
+        input(type="tel", placeholder="615-555-5555", ng-model="main.newPerson.phone", required)
+        label Twitter
+        input(type="text", placeholder="@abc123", ng-model="main.newPerson.twitter", required)
+        input(type="submit", value="Add Person to Address Book", ng-disabled="newAddressForm.$invalid")
       table
         thead
           tr
+            th
             th Name
             th Phone
             th Twitter
         tbody
-          tr(ng-repeat="person in main.people | orderBy | filter:query")
+          tr(ng-repeat="person in main.people | orderBy:'name' | filter:query")
+            td
+              button(ng-click="main.removeAddress(person)") X
             td
               {{person.name | uppercase}}
             td: a(href="tel:{{person.phone}}")
